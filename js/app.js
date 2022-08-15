@@ -16,22 +16,22 @@ elForm.addEventListener("submit", function(evt) {
   let elInputVal = elInput.value; 
   elInput.value = "";
 
-  if(elInputVal <= elCold || elInputVal >= elWarm) {
+  let elZalVal = (elZal.checked);
+  let elRainVal = (elRain.checked);
+
+
+  if(elInputVal <= elCold || elInputVal >= elWarm || elRainVal) {
     elAnswer.innerText = "Siz bugun zalga bora olmaysiz(";
-  } 
+  }
   else if(isNaN(elInputVal)) {
     elAnswer.innerText = "Son kiriting!"
   } 
-  else {
-    elAnswer.innerText = "Siz bugun zalga bora olasiz!"; 
+  else if (elInputVal >= elCold || elInputVal <= elWarm || elZalVal) {
+    elAnswer.innerText = "Siz bugun zalga bora olasiz!";
   }
 
-})
-
-elForm.addEventListener("checked", function(e) {
-  e.preventDefault();
-
-  if(elZal.checked) {
-    elAnswer.innerText = "Bugun yomg'ir(";
+  else if (elInputVal <= elCold || elZalVal) {
+    elAnswer.innerText = "Siz bugun faqat zalga bora olasiz!";
   }
+
 })
